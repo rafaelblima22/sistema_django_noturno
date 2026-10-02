@@ -1,7 +1,10 @@
 {% extends 'base-crud.html' %}
 {% block title %} Novo Paciente{% endblock %}
+{% load static%}
 {% block content %}
-<h1> Cadastrar novo paciente </h1>
+<h1 class="mt-5">
+    Cadastrar novo paciente
+</h1>
 <hr>
 {% if error %} <p> {{error}} </p> {% endif %}
 <form action="" method="POST">
@@ -19,7 +22,7 @@
             <label for="cpf" class="form-label">
                 CPF do paciente:
             </label>
-            <input type="text" class="form-control" name="cpf" required>
+            <input type="text" class="form-control" id="cpf" name="cpf" maxlength="14" required>
         </div>
     </div>
     <div class="row">
@@ -35,7 +38,7 @@
             <label for="telefone" class="form-label">
                 Telefone do paciente:
             </label>
-            <input type="text" class="form-control" name="telefone" required>
+            <input type="text" class="form-control" id="telefone" name="telefone" required>
         </div>
     </div>
     <div class="row">
@@ -43,7 +46,7 @@
             <label for="data_nascimento" class="form-label">
                 Data de nascimento do paciente:
             </label>
-            <input type="datetime" class="form-control" name="data_nascimento" required>
+            <input type="date" class="form-control" name="data_nascimento" required>
         </div>
     </div>
     <div class="row">
@@ -54,4 +57,6 @@
         </div>
     </div>
 </form>
+
+<script src="{% static 'js/scripts.js' %}"></script>
 {% endblock %}
