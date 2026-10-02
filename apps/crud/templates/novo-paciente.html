@@ -1,0 +1,57 @@
+{% extends 'base-crud.html' %}
+{% block title %} Novo Paciente{% endblock %}
+{% block content %}
+<h1> Cadastrar novo paciente </h1>
+<hr>
+{% if error %} <p> {{error}} </p> {% endif %}
+<form action="" method="POST">
+    {% csrf_token %}
+    <div class="row">
+        <div class=" col-12 col-md-8 col-lg-6 mb-3">
+            <label for="nome" class="form-label">
+                Nome do paciente:
+            </label>
+            <input type="text" class="form-control" name="nome" required>
+        </div>
+    </div>
+    <div class="row">
+        <div class=" col-12 col-md-8 col-lg-6 mb-3">
+            <label for="cpf" class="form-label">
+                CPF do paciente:
+            </label>
+            <input type="text" class="form-control" name="cpf" required>
+        </div>
+    </div>
+    <div class="row">
+        <div class=" col-12 col-md-8 col-lg-6 mb-3">
+            <label for="email" class="form-label">
+                Email do paciente:
+            </label>
+            <input type="text" class="form-control" name="email" required>
+        </div>
+    </div>
+    <div class="row">
+        <div class=" col-12 col-md-8 col-lg-6 mb-3">
+            <label for="telefone" class="form-label">
+                Telefone do paciente:
+            </label>
+            <input type="text" class="form-control" name="telefone" required>
+        </div>
+    </div>
+    <div class="row">
+        <div class=" col-12 col-md-8 col-lg-6 mb-3">
+            <label for="data_nascimento" class="form-label">
+                Data de nascimento do paciente:
+            </label>
+            <input type="datetime" class="form-control" name="data_nascimento" required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="mt-4">
+            <button type="submit" class="btn btn-success">
+                Cadastrar novo paciente
+            </button>
+        </div>
+    </div>
+</form>
+{% endblock %}
