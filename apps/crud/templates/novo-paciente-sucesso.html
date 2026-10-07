@@ -4,7 +4,7 @@
 {% endblock %}
 {% block content %}
     <script>
-        alert("Triagem de paciente realizada com sucesso!")
-        window.location.href("/")
+        alert("Triagem de paciente realizada com sucesso!");
+        window.location.href = "{% url 'index' %}";
     </script>
 {% endblock%}

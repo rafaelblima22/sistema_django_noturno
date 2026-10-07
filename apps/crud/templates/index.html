@@ -1,8 +1,104 @@
 {% extends 'base-crud.html' %}
-{% block title %}CRUD | Home Page{% endblock %}
+
+{% block title %}
+CRUD | Home Page
+{% endblock %}
+
 {% block content %}
-    <div class="d-flex vh-100 justify-content-center align-items-center">
-        <h1>Home Page do Sistema CRUD</h1>
+
+<div class="container mt-4">
+
+    <!-- Cabeçalho -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h1>Olá, {{ user.username }}!</h1>
+            <p class="text-muted mb-0">Seja bem-vindo ao sistema.</p>
+        </div>
+
+        <a href="" class="btn btn-primary">
+            Cadastrar paciente
+        </a>
     </div>
+
+    <hr>
+
+    <!-- Lista de pacientes -->
+    <div class="mt-5">
+
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h2>Lista de pacientes</h2>
+
+            <span class="badge bg-secondary">
+                {{ pacientes|length }} paciente(s)
+            </span>
+        </div>
+
+        {% if pacientes %}
+
+        <div class="table-responsive">
+            <table class="table table-striped table-hover table-bordered align-middle">
+
+                <thead class="table-dark">
+                    <tr>
+                        <th>Código</th>
+                        <th>Nome</th>
+                        <th>CPF</th>
+                        <th>E-mail</th>
+                        <th>Telefone</th>
+                        <th>Data de nascimento</th>
+                        <th class="text-center">Ações</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for paciente in pacientes %}
+                    <tr>
+                        <td>
+                            {{ paciente.codigo_paciente }}
+                        </td>
+                        <td>
+                            <strong>{{ paciente.nome }}</strong>
+                        </td>
+                        <td>
+                            {{ paciente.cpf }}
+                        </td>
+                        <td>
+                            {{ paciente.email }}
+                        </td>
+                        <td>
+                            {{ paciente.telefone }}
+                        </td>
+                        <td>
+                            {{ paciente.data_nascimento|date:"d/m/Y" }}
+                        </td>
+                        <td class="text-center">
+                            <a href="{% url 'alterar_paciente' paciente.codigo_paciente %}" class="btn btn-sm btn-primary">
+                                Alterar
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        {% else %}
+
+        <div class="alert alert-info text-center" role="alert">
+            <h5>Nenhum paciente cadastrado.</h5>
+            <p class="mb-3">
+                Ainda não existem pacientes cadastrados no sistema.
+            </p>
+
+            <a href="" class="btn btn-primary">
+                Cadastrar primeiro paciente
+            </a>
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
 
 {% endblock %}
