@@ -16,12 +16,14 @@ def novoPaciente(request):
         email = request.POST.get('email')
         telefone = request.POST.get('telefone')
         data_nascimento = request.POST.get('data_nascimento')
+        sintomas = request.POST.get('sintomas')
         Paciente.objects.create( 
             nome=nome,
             cpf=cpf,
             email=email,
             telefone=telefone,
-            data_nascimento=data_nascimento
+            data_nascimento=data_nascimento,
+            sintomas=sintomas
         )
         return redirect("/novoPacienteSucesso")
     return render(request, "novo-paciente.html")
@@ -39,8 +41,23 @@ def alterar_paciente(request, codigo_paciente):
         paciente.email = request.POST.get('email')
         paciente.telefone = request.POST.get('telefone')
         paciente.data_nascimento = request.POST.get('data_nascimento')
+        paciente.sintomas = request.POST.get('sintomas')
 
         paciente.save()
 
         return redirect('index')
     return render(request, "alterar_dados.html", {'paciente':paciente})
+
+@login_required
+def excluir_paciente(request, codigo_paciente):
+    paciente = Paciente.objects.get(codigo_paciente=codigo_paciente)
+    paciente.delete()
+    return redirect('index')
+
+def buscar_paciente(request):
+    query = request.GET.get('buscar','')
+    pacientes = Paciente.objects.filter(nome__icontains=query)
+    return render(request, 'index.html', {
+        'pacientes':pacientes,
+        'query':query
+    })
