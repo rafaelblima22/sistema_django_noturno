@@ -9,60 +9,11 @@
 {% if error %} <p> {{error}} </p> {% endif %}
 <form action="{% url 'alterar_paciente' paciente.codigo_paciente %}" method="POST">
     {% csrf_token %}
-    <div class="row mt-5">
-        <div class=" col-12 col-md-8 col-lg-6 mb-3">
-            <label for="nome" class="form-label">
-                Nome do paciente:
-            </label>
-            <input type="text" class="form-control" name="nome"  value="{{ paciente.nome }}" required>
-        </div>
-    </div>
-    <div class="row">
-        <div class=" col-12 col-md-8 col-lg-6 mb-3">
-            <label for="cpf" class="form-label">
-                CPF do paciente:
-            </label>
-            <input type="text" class="form-control" id="cpf" name="cpf" maxlength="14" value="{{ paciente.cpf }}" required>
-        </div>
-    </div>
-    <div class="row">
-        <div class=" col-12 col-md-8 col-lg-6 mb-3">
-            <label for="email" class="form-label">
-                Email do paciente:
-            </label>
-            <input type="text" class="form-control" name="email" value="{{ paciente.email }}" required>
-        </div>
-    </div>
-    <div class="row">
-        <div class=" col-12 col-md-8 col-lg-6 mb-3">
-            <label for="telefone" class="form-label">
-                Telefone do paciente:
-            </label>
-            <input type="text" class="form-control" id="telefone" name="telefone" value="{{ paciente.telefone }}" required>
-        </div>
-    </div>
-    <div class="row">
-        <div class=" col-12 col-md-8 col-lg-6 mb-3">
-            <label for="data_nascimento" class="form-label">
-                Data de nascimento do paciente:
-            </label>
-            <input type="date" class="form-control" name="data_nascimento" value="{{ paciente.data_nascimento| date:'Y-m-d' }}" required>
-        </div>
-    </div>
-    <div class="row">
-        <div class=" col-12 col-md-8 col-lg-6 mb-3">
-            <label for="data_nascimento" class="form-label">
-                Sintomas:
-            </label>
-            <textarea rows="3" class="form-control" id="sintomas" name="sintomas"></textarea>
-        </div>
-    </div>
-    <div class="row">
-        <div class="mt-4">
-            <button type="submit" class="btn btn-success">
-                Alterar
-            </button>
-        </div>
+    {% include 'includes/form.html' %}
+    <div class="d-flex justify-content-start mt-5 mb-5">
+        <button type="submit" class="btn btn-success">
+            Alterar
+        </button>
     </div>
 </form>
 
