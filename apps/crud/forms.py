@@ -45,6 +45,7 @@ class PacienteForm(forms.ModelForm):
             ),
             'sintomas':forms.Textarea(
                 attrs={
+                    'class':"form-control",
                     'id':"sintomas",
                     'row':3,
                 },

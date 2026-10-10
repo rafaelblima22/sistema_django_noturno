@@ -15,7 +15,7 @@ def novoPaciente(request):
         form = PacienteForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('novo-paciente_sucesso')
+            return redirect('novo-paciente-sucesso')
     else:
         form = PacienteForm()
     return render(request, "novo-paciente.html",{
